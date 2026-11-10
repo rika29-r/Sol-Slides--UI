@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solé Slides | Summer Steps</title>
+    <meta name="description" content="Solé Slides: ultra-light summer sandals in three sunset colorways. A frontend UI demo project.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-variant="coral">
+
+    <!-- Reusable SVG artwork (colors come from CSS variables) -->
+    <svg class="sprite" aria-hidden="true" focusable="false">
+        <symbol id="sandal" viewBox="0 0 400 620">
+            <!-- thickness / midsole -->
+            <path class="s-mid" transform="translate(0 18)"
+                  d="M200 18C285 18 332 82 326 176C321 252 306 318 296 392C286 470 272 566 200 590C128 566 114 470 104 392C94 318 79 252 74 176C68 82 115 18 200 18Z"/>
+            <!-- sole top -->
+            <path class="s-sole"
+                  d="M200 18C285 18 332 82 326 176C321 252 306 318 296 392C286 470 272 566 200 590C128 566 114 470 104 392C94 318 79 252 74 176C68 82 115 18 200 18Z"/>
+            <!-- footbed -->
+            <path class="s-foot" transform="translate(200 300) scale(.9 .93) translate(-200 -300)"
+                  d="M200 18C285 18 332 82 326 176C321 252 306 318 296 392C286 470 272 566 200 590C128 566 114 470 104 392C94 318 79 252 74 176C68 82 115 18 200 18Z"/>
+            <!-- footbed shading: toes, arch, heel cup -->
+            <g class="s-shade">
+                <path d="M138 96C150 82 172 78 188 86" />
+                <path d="M196 80C214 72 238 76 252 90" />
+                <path d="M256 104C268 112 272 126 270 140" />
+                <ellipse cx="200" cy="500" rx="68" ry="56"/>
+            </g>
+            <text class="s-logo" x="200" y="512" text-anchor="middle">SOLÉ</text>
+            <!-- strap -->
+            <path class="s-strap-shadow" transform="translate(0 12)"
+                  d="M80 232C120 130 280 130 320 232L322 306C280 214 120 214 78 306Z"/>
+            <path class="s-strap"
+                  d="M80 232C120 130 280 130 320 232L322 306C280 214 120 214 78 306Z"/>
+            <path class="s-strap-hi"
+                  d="M92 228C128 140 272 140 308 228L306 242C270 160 130 160 94 242Z"/>
+            <path class="s-stitch" d="M98 268C130 172 270 172 302 268"/>
+        </symbol>
+
+        <symbol id="leaf" viewBox="0 0 100 100">
+            <path fill="currentColor" d="M50 4C92 30 92 80 50 96C8 80 8 30 50 4Z"/>
+            <path d="M50 20V90" stroke="rgba(0,0,0,.18)" stroke-width="3" stroke-linecap="round" fill="none"/>
+        </symbol>
+
+        <symbol id="shell" viewBox="0 0 100 100">
+            <path fill="currentColor" d="M50 92L8 42C22 10 78 10 92 42Z"/>
+            <path d="M50 90V24M50 90L28 28M50 90L72 28M50 90L16 44M50 90L84 44"
+                  stroke="rgba(0,0,0,.2)" stroke-width="3" stroke-linecap="round" fill="none"/>
+        </symbol>
+
+        <symbol id="sparkle" viewBox="0 0 100 100">
+            <path fill="currentColor" d="M50 0L60 40L100 50L60 60L50 100L40 60L0 50L40 40Z"/>
+        </symbol>
+    </svg>
+
+    <div class="sparkles" id="sparkles" aria-hidden="true"></div>
+
+    <header class="header">
+        <a class="logo" href="#" aria-label="Solé Slides home">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+                <path d="M3 14C7 10 11 16 15 12C17 10.5 19 11 21 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span>Solé</span>
+        </a>
+
+        <nav class="nav glass" aria-label="Main navigation">
+            <a href="#" class="nav-item active">Home</a>
+            <a href="#" class="nav-item">Collection</a>
+            <a href="#" class="nav-item">Comfort</a>
+            <a href="#" class="nav-item">Materials</a>
+            <a href="#" class="nav-item">Reviews</a>
+        </nav>
+
+        <button class="cart-btn" id="cart-btn" type="button" aria-label="Cart, 0 items">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M5 8h14l-1.2 11H6.2L5 8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M9 8V7a3 3 0 0 1 6 0v1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span>Cart</span>
+            <span class="cart-count" id="cart-count">0</span>
+        </button>
+    </header>
+
+    <main class="hero">
+        <div class="decor-layer back" id="decor-back" aria-hidden="true"></div>
+
+        <section class="hero-left" aria-label="Product introduction">
+            <h1 class="title"><span class="outline">Summer</span><br>Steps</h1>
+            <p class="description">
+                Cloud-soft foam, a sunset-dipped strap and zero effort.
+                Slide into the lightest summer sandal you'll ever own.
+            </p>
+
+            <p class="variant-label" aria-live="polite">
+                <span id="variant-name">Coral Sunset</span>
+                <span class="dot">·</span>
+                $<span id="variant-price">49</span>
+            </p>
+
+            <div class="sizes" role="group" aria-label="Choose a size">
+                <button class="size" type="button" aria-pressed="false">38</button>
+                <button class="size" type="button" aria-pressed="false">39</button>
+                <button class="size active" type="button" aria-pressed="true">40</button>
+                <button class="size" type="button" aria-pressed="false">41</button>
+                <button class="size" type="button" aria-pressed="false">42</button>
+            </div>
+
+            <div class="cta-group">
+                <button class="primary-btn" id="add-btn" type="button">
+                    Add to cart
+                    <span class="plus-icon" aria-hidden="true">+</span>
+                </button>
+            </div>
+
+            <div class="badge">
+                <div class="badge-icon" aria-hidden="true">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.5 6.6 19.5l1.2-6L3.3 9.3l6.1-.7L12 3Z"
+                              stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="badge-text">
+                    <span class="badge-title">SUMMER EDIT 2026</span>
+                    <span class="badge-sub">Limited colorways</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="stage-wrap">
+            <div class="stage">
+                <div class="stage-float">
+                    <div class="spin" id="spin">
+                        <div class="pair" id="pair">
+                            <svg class="sandal second" viewBox="0 0 400 620" aria-hidden="true"><use href="#sandal"/></svg>
+                            <svg class="sandal main" viewBox="0 0 400 620" role="img" aria-label="Solé Slides sandal"><use href="#sandal"/></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="ground-shadow" aria-hidden="true"></div>
+            </div>
+        </div>
+
+        <div class="decor-layer front" id="decor-front" aria-hidden="true"></div>
+
+        <section class="hero-right" aria-label="Colorways">
+            <div class="carousel">
+                <div class="cards" role="group" aria-label="Choose a colorway">
+                    <button class="card active" type="button" data-variant="coral" data-name="Coral Sunset" data-price="49" aria-pressed="true">
+                        <svg class="mini" viewBox="0 0 400 620" aria-hidden="true"><use href="#sandal"/></svg>
+                        <span class="card-info"><span>Coral Sunset</span><span>$49</span></span>
+                    </button>
+                    <button class="card" type="button" data-variant="ocean" data-name="Ocean Tide" data-price="49" aria-pressed="false">
+                        <svg class="mini" viewBox="0 0 400 620" aria-hidden="true"><use href="#sandal"/></svg>
+                        <span class="card-info"><span>Ocean Tide</span><span>$49</span></span>
+                    </button>
+                    <button class="card" type="button" data-variant="mint" data-name="Lagoon Mint" data-price="52" aria-pressed="false">
+                        <svg class="mini" viewBox="0 0 400 620" aria-hidden="true"><use href="#sandal"/></svg>
+                        <span class="card-info"><span>Lagoon Mint</span><span>$52</span></span>
+                    </button>
+                </div>
+                <div class="carousel-nav">
+                    <button class="arrow" id="prev" type="button" aria-label="Previous colorway">←</button>
+                    <button class="arrow" id="next" type="button" aria-label="Next colorway">→</button>
+                </div>
+            </div>
+            <h2 class="side-title"><span class="outline">Feather</span><br>Light</h2>
+        </section>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+<!-- Solé is a fictional brand. This page is a frontend UI demo. -->
